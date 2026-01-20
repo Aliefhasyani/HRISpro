@@ -1,45 +1,97 @@
 @props(['title' => null])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{$title ?? config('app.name', 'HRISPro') }}</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Dancing+Script:wght@400..700&family=Limelight&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>{{ $title ?? config('app.name', 'HRISPro') }}</title>
 
-        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Dancing+Script:wght@400..700&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet">
 
-        <style>
-      
-        </style>
-    </head>
-    <body class="antialiased font-sans">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+    {{-- Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    {{-- Reveal Animation --}}
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(-60px);
+            transition:
+                opacity 1.25s ease-out,
+                transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
 
-            <main>
-                {{ $slot }}
-            </main>
-            @include('layouts.footer')
-        </div>
-    </body>
+        .reveal-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .reveal-delay-1 { transition-delay: 0.25s; }
+        .reveal-delay-2 { transition-delay: 0.5s; }
+        .reveal-delay-3 { transition-delay: 0.75s; }
+        .reveal-delay-4 { transition-delay: 1s; }
+    </style>
+</head>
+
+<body class="antialiased font-sans bg-gray-100 dark:bg-gray-900">
+
+    <div class="min-h-screen flex flex-col">
+
+ 
+        @include('layouts.navigation')
+
+        @isset($header)
+            <header class="bg-white dark:bg-gray-800 shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endisset
+
+        <main class="flex-1">
+            {{ $slot }}
+        </main>
+
+        @include('layouts.footer')
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("reveal-active");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.15,
+                    rootMargin: "0px 0px -80px 0px"
+                }
+            );
+
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
 </html>

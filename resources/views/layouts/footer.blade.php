@@ -1,78 +1,71 @@
-<footer class="bg-slate-900 text-slate-300 mt-24">
-    <div class="max-w-7xl mx-auto px-6 py-16">
+<!-- Footer -->
+<footer class="bg-white py-12 px-6 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-12">
 
-        <div class="grid gap-12 md:grid-cols-4">
-
-            <!-- BRAND -->
+            <!-- Company -->
             <div>
-                <h3 class="text-xl font-extrabold tracking-widest
-                           font-[Quicksand] text-white">
-                    HRISPRO
-                </h3>
+                <div class="flex items-center space-x-3 mb-6">
+                
+                    <span class="text-xl font-bold text-slate-900 tracking-widest">
+                        HRISPRO
+                    </span>
+                </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-slate-400">
-                    Solusi Human Resource Information System modern
-                    untuk membantu perusahaan mengelola SDM secara
-                    efisien, aman, dan terintegrasi.
+                <p class="text-slate-500">
+                    Modern HR management for forward-thinking companies.
                 </p>
             </div>
 
-            <!-- COMPANY -->
+            <!-- Product -->
             <div>
-                <h4 class="text-sm font-semibold text-white uppercase tracking-wide">
-                    Company
-                </h4>
-
-                <ul class="mt-4 space-y-3 text-sm">
-                    <li><a href="#" class="hover:text-white transition">About</a></li>
-                    <li><a href="#" class="hover:text-white transition">Features</a></li>
-                    <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                <h4 class="font-bold text-slate-900 mb-6">Product</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Features</a></li>
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Pricing</a></li>
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">API Docs</a></li>
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Changelog</a></li>
                 </ul>
             </div>
 
-            <!-- PRODUCT -->
+            <!-- Resources -->
             <div>
-                <h4 class="text-sm font-semibold text-white uppercase tracking-wide">
-                    Product
-                </h4>
-
-                <ul class="mt-4 space-y-3 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Dashboard</a></li>
-                    <li><a href="#" class="hover:text-white transition">Attendance</a></li>
-                    <li><a href="#" class="hover:text-white transition">Payroll</a></li>
+                <h4 class="font-bold text-slate-900 mb-6">Resources</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Blog</a></li>
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Help Center</a></li>
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Community</a></li>
+                    <li><a href="#" class="text-slate-500 hover:text-slate-900 transition">Status</a></li>
                 </ul>
             </div>
 
-            <!-- CONTACT -->
+            <!-- Contact -->
             <div>
-                <h4 class="text-sm font-semibold text-white uppercase tracking-wide">
-                    Contact
-                </h4>
-
-                <ul class="mt-4 space-y-3 text-sm text-slate-400">
-                    <li>Email: support@hrispro.id</li>
-                    <li>Phone: +62 812-3456-7890</li>
-                    <li>Indonesia</li>
+                <h4 class="font-bold text-slate-900 mb-6">Contact</h4>
+                <ul class="space-y-3 text-slate-500">
+                    <li>hello@hrispro.com</li>
+                    <li>+1 (555) 123-4567</li>
                 </ul>
+
+                <!-- Social (Text-based) -->
+                <div class="flex space-x-4 mt-6">
+                    <a href="#" class="text-slate-500 hover:text-slate-900 text-sm font-medium transition">
+                        Twitter
+                    </a>
+                    <a href="#" class="text-slate-500 hover:text-slate-900 text-sm font-medium transition">
+                        LinkedIn
+                    </a>
+                    <a href="#" class="text-slate-500 hover:text-slate-900 text-sm font-medium transition">
+                        GitHub
+                    </a>
+                </div>
             </div>
 
         </div>
 
-        <!-- BOTTOM -->
-        <div class="mt-16 pt-8 border-t border-slate-700
-                    flex flex-col md:flex-row
-                    items-center justify-between gap-4">
-
-            <p class="text-sm text-slate-400">
-                © {{ date('Y') }} HRISPRO. All rights reserved.
-            </p>
-
-            <div class="flex gap-6 text-sm">
-                <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition">Terms</a>
-            </div>
-
+        <!-- Bottom -->
+        <div class="border-t border-slate-200 mt-12 pt-8 text-center text-slate-500 text-sm">
+            <p>© 2026 HRISPro. All rights reserved.</p>
         </div>
-
     </div>
 </footer>
