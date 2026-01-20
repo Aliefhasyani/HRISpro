@@ -1,146 +1,132 @@
-<nav x-data="{ open: false }"
-     class="sticky top-0 z-50 backdrop-blur-md
-            bg-blue-700 dark:bg-slate-900">
+<nav id="main-navbar"
+     class="bg-white/90 backdrop-blur-0
+            border-b border-slate-200
+            sticky top-0 z-50
+            transition-all duration-300 ease-in-out">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex h-20 items-center justify-between">
+        <div class="flex justify-between h-16">
 
-            <!-- LEFT: LOGO -->
-            <a href="{{ route('home') }}" class="group">
-                <span class="text-2xl font-extrabold tracking-[6px]
-                             font-[Quicksand]
-                             text-white
-                             ">
+            <!-- LEFT -->
+            <div class="flex items-center gap-10">
+
+                <!-- LOGO -->
+                <a href="{{ route('home') }}"
+                   class="text-xl font-extrabold tracking-widest
+                          font-[Quicksand]
+                          text-slate-900
+                          hover:text-blue-700
+                          transition">
                     HRISPRO
-                </span>
-            </a>
+                </a>
 
-            <!-- CENTER: NAV LINKS -->
-            <div class="hidden sm:flex items-center gap-10">
-                <x-nav-link
-                    :href="route('home')"
-                    :active="request()->routeIs('home')"
-                    class="relative !text-base font-medium uppercase tracking-[3px]
-                        text-white/80
-                        hover:text-white
-                        after:absolute after:left-0 after:-bottom-1
-                        after:h-[2px] after:w-0
-                        after:bg-indigo-400
-                        hover:after:w-full
-                        after:transition-all after:duration-300
-                        !border-b-0"
-                >
-                    Home
-                </x-nav-link>
-                <x-nav-link
-                    :href="route('home')"
-                    :active="request()->routeIs('home')"
-                    class="relative !text-base font-medium uppercase tracking-[3px]
-                        text-white/80
-                        hover:text-white
-                        after:absolute after:left-0 after:-bottom-1
-                        after:h-[2px] after:w-0
-                        after:bg-indigo-400
-                        hover:after:w-full
-                        after:transition-all after:duration-300
-                        !border-b-0"
-                >
-                    DASHBOARD
-                </x-nav-link>
-                <x-nav-link
-                    :href="route('home')"
-                    :active="request()->routeIs('home')"
-                    class="relative !text-base font-medium uppercase tracking-[3px]
-                        text-white/80
-                        hover:text-white
-                        after:absolute after:left-0 after:-bottom-1
-                        after:h-[2px] after:w-0
-                        after:bg-indigo-400
-                        hover:after:w-full
-                        after:transition-all after:duration-300
-                        !border-b-0"
-                >
-                    ABOUT
-                </x-nav-link>
+                <!-- DESKTOP NAV -->
+                <div class="hidden sm:flex items-center gap-8">
+                    @php
+                        $navClass = 'relative text-sm font-semibold uppercase tracking-wide
+                                    text-slate-700 hover:text-black
+                                    after:absolute after:left-0 after:-bottom-1
+                                    after:h-[2px] after:w-0
+                                    after:bg-black
+                                    hover:after:w-full
+                                    after:transition-all after:duration-300';
+                    @endphp
+
+                    <x-nav-link
+                        :href="route('home')"
+                        :active="request()->routeIs('home')"
+                        class="{{ $navClass }} !border-b-0">
+                        Home
+                    </x-nav-link>
+
+                    <a href="#" class="{{ $navClass }}">About</a>
+                    <a href="#" class="{{ $navClass }}">Features</a>
+                </div>
             </div>
 
             <!-- RIGHT -->
-            <div class="flex items-center gap-4">
+            <div class="hidden sm:flex items-center">
 
                 @auth
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button class="flex items-center gap-2 px-4 py-2
-                                           rounded-full border border-white/20
-                                           text-sm font-medium text-white
-                                           hover:bg-white/10
-                                           transition">
-                                <span>{{ Auth::user()->name }}</span>
-                                <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293
-                                             a1 1 0 111.414 1.414l-4 4a1 1 0
-                                             01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                          clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
-                                Profile
-                            </x-dropdown-link>
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link
-                                    :href="route('logout')"
-                                    onclick="event.preventDefault(); this.closest('form').submit();">
-                                    Log Out
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
+                    <button class="flex items-center gap-2
+                                   text-sm font-semibold text-slate-700
+                                   hover:text-slate-900 transition">
+                        {{ Auth::user()->name }}
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
                 @endauth
 
                 @guest
                     <a href="{{ route('login') }}"
-                       class="px-5 py-2 rounded-full text-sm font-semibold
-                              bg-white text-blue-700
-                              hover:bg-slate-100 transition">
-                        Sign In
+                       class="text-sm font-semibold text-slate-600
+                              hover:text-slate-900 transition">
+                        Login
+                    </a>
+
+                    <a href="{{ route('register') }}"
+                       class="ml-4 px-5 py-2 rounded-lg
+                              bg-blue-700 hover:bg-blue-800
+                              text-white text-sm font-semibold
+                              transition shadow-sm">
+                        Register
                     </a>
                 @endguest
 
-                <!-- MOBILE -->
-                <button @click="open = !open"
-                        class="sm:hidden p-2 rounded-md
-                               text-white hover:bg-white/10 transition">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{ 'hidden': open }"
-                              stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{ 'hidden': !open }"
-                              stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12" />
+            </div>
+
+            <!-- MOBILE BUTTON -->
+            <div class="flex items-center sm:hidden">
+                <button id="mobile-menu-button"
+                        class="p-2 rounded-lg
+                               text-slate-600 hover:text-slate-900
+                               hover:bg-slate-100 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
-
             </div>
+
         </div>
     </div>
 
     <!-- MOBILE MENU -->
-    <div x-show="open" x-transition
-         class="sm:hidden bg-blue-800 dark:bg-slate-800">
+    <div id="mobile-menu"
+         class="hidden sm:hidden bg-white border-t border-slate-200">
         <div class="px-4 py-4 space-y-3">
+
             <a href="{{ route('home') }}"
-               class="block text-sm font-semibold text-white">
+               class="block text-sm font-semibold text-slate-700 hover:text-blue-700">
                 Home
             </a>
+
+            <a href="#" class="block text-sm font-semibold text-slate-700 hover:text-blue-700">
+                About
+            </a>
+
+            <a href="#" class="block text-sm font-semibold text-slate-700 hover:text-blue-700">
+                Features
+            </a>
+
+            @guest
+                <div class="pt-3 border-t border-slate-200">
+                    <a href="{{ route('login') }}"
+                       class="block text-sm font-semibold text-slate-700 hover:text-blue-700">
+                        Login
+                    </a>
+
+                    <a href="{{ route('register') }}"
+                       class="mt-2 block text-center px-4 py-2 rounded-lg
+                              bg-blue-700 hover:bg-blue-800
+                              text-white text-sm font-semibold">
+                        Register
+                    </a>
+                </div>
+            @endguest
+
         </div>
     </div>
-
 </nav>
