@@ -19,23 +19,34 @@
                 <div class="hidden sm:flex items-center gap-8">
                     @php
                         $navClass = 'relative text-sm font-semibold uppercase tracking-wide
-                                     text-white/90 hover:text-white
-                                     after:absolute after:left-0 after:-bottom-1
-                                     after:h-[2px] after:w-0
-                                     after:bg-white
-                                     hover:after:w-full
-                                     after:transition-all after:duration-300';
+                                    text-white/90 hover:text-white
+                                    after:absolute after:left-0 after:-bottom-1
+                                    after:h-[2px] after:w-0
+                                    after:bg-white
+                                    hover:after:w-full
+                                    after:transition-all after:duration-300';
+
+                        $activeClass = 'after:w-full text-white';
                     @endphp
 
-                    <x-nav-link
-                        :href="route('home')"
-                        :active="request()->routeIs('home')"
-                        class="{{ $navClass }} !border-b-0">
-                        Home
-                    </x-nav-link>
 
-                    <a href="{{ route('user.dashboard') }}" class="{{ $navClass }}">Dashboard</a>
-                    <a href="#" class="{{ $navClass }}">Features</a>
+                    <a href="{{ route('home') }}"
+                        class="{{ $navClass }} {{ request()->routeIs('home') ? $activeClass : '' }}">
+                            Home
+                    </a>
+
+                    <a href="{{ route('user.dashboard') }}"
+                        class="{{ $navClass }} {{ request()->routeIs('user.dashboard') ? $activeClass : '' }}">
+                            Dashboard
+                    </a>
+
+                    <a href="#"
+                        class="{{ $navClass }}">
+                            Features
+                    </a>
+
+
+         
                 </div>
             </div>
 
