@@ -8,9 +8,12 @@ class LeaveType extends Model
 {
     protected $table = 'leaves_types';
 
-    protected $fillable = ['name','default_quota'];
+    protected $fillable = ['name'];
 
-    public function leaveBalance(){
+    public function leaveBalances()
+    {
         return $this->hasMany(LeaveBalance::class);
     }
+
+ 
 }

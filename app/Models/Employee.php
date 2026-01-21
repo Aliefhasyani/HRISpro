@@ -22,23 +22,30 @@ class Employee extends Model
         'status'
     ];
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
     public function departement(){
+
         return $this->belongsTo(Departement::class,'departement_id');
     }
 
-    public function position(){
+    public function position()
+    {
         return $this->belongsTo(Position::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function leaveBalance(){
-        return $this->hasMany(LeaveBalance::class);
+    public function leaveBalance()
+    {
+        return $this->hasOne(LeaveBalance::class);
     }
+
+
 }

@@ -14,7 +14,10 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if($user){
-            $user->load('employee.position','employee.departement');
+            $user->load('employee.position',
+                        'employee.departement', 
+                        'employee.leaveBalance.leaveType', 
+                        'employee.leaveBalance.approvedBy');
         
         }
         return view('dashboard',compact('user'));
