@@ -12,6 +12,11 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        if($user){
+            $user->load('employee.position');
+        
+        }
         return view('dashboard',compact('user'));
     }
 }
