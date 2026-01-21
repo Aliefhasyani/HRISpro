@@ -12,7 +12,7 @@
 
     <title>{{ $title ?? config('app.name', 'HRISPro') }}</title>
 
-    {{-- Fonts --}}
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
@@ -20,31 +20,10 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet">
 
-    {{-- Vite --}}
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 
-    {{-- Reveal Animation --}}
-    <style>
-        .reveal {
-            opacity: 0;
-            transform: translateY(-60px);
-            transition:
-                opacity 1.25s ease-out,
-                transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
-            will-change: transform, opacity;
-        }
-
-        .reveal-active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-        .reveal-delay-1 { transition-delay: 0.25s; }
-        .reveal-delay-2 { transition-delay: 0.5s; }
-        .reveal-delay-3 { transition-delay: 0.75s; }
-        .reveal-delay-4 { transition-delay: 1s; }
-    </style>
 </head>
 
 <body class="antialiased font-sans bg-gray-100 dark:bg-gray-900">

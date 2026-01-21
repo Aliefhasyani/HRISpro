@@ -1,6 +1,9 @@
 <x-app-layout title="Homepage">
 
-    {{-- ================= HERO ================= --}}
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    @endpush
+
     <div class="relative w-full h-[70vh] overflow-hidden">
         <img
             src="{{ asset('images/carousell.png') }}"
